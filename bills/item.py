@@ -1,5 +1,6 @@
 from enum import Enum
 from datetime import datetime
+from entity import Buyer, Seller
 
 ISD_FACTOR = 0.25
 
@@ -52,3 +53,22 @@ class Product:
 
     def calculate_total(self) -> float:
         return (self.price * self.quantity) + self.calculate_total_taxes()
+
+
+class Bill:
+    def __init__(
+        self,
+        bill_id: str,
+        sale_date: datetime,
+        seller: Seller,
+        buyer: Buyer,
+        products: list[Product],
+    ) -> None:
+        self.bill_id = bill_id
+        self.sale_date = sale_date
+        self.seller = seller
+        self.buyer = buyer
+        self.products = products
+
+    def calculate_total(self) -> float:
+        return sum(product.calculate_total() for product in self.products)
