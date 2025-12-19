@@ -1,6 +1,8 @@
 from enum import Enum
 from datetime import datetime
 
+ISD_FACTOR = 0.25
+
 class TaxType(Enum):
     IVA = 'IVA'
     ISD = 'ISD'
@@ -29,3 +31,17 @@ class Product:
         self.quantity = quantity
         self.price = price
         self.taxes = taxes
+    
+    def calculate_tax(self, tax: Tax) -> float:
+        tax_value = self.quantity * self.price * tax.percentage
+
+        if tax.tax_type == TaxType.ISD:
+            tax_value *= ISD_FACTOR
+
+        return tax_value
+
+    def calculate_total_taxes(self):
+        pass
+    
+    def calculate_total(self):
+        pass
