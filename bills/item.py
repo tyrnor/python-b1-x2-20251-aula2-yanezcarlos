@@ -40,8 +40,12 @@ class Product:
 
         return tax_value
 
-    def calculate_total_taxes(self):
-        pass
+    def calculate_total_taxes(self) -> float:
+        total = 0.0
+        for tax in self.taxes:
+            total += self.calculate_tax(tax)
+        
+        return total
     
-    def calculate_total(self):
-        pass
+    def calculate_total(self) -> float:
+        return (self.price * self.quantity) + self.calculate_total_taxes()
