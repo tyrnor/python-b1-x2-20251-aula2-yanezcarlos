@@ -3,15 +3,18 @@ from datetime import datetime
 
 ISD_FACTOR = 0.25
 
+
 class TaxType(Enum):
-    IVA = 'IVA'
-    ISD = 'ISD'
+    IVA = "IVA"
+    ISD = "ISD"
+
 
 class Tax:
     def __init__(self, tax_id: str, tax_type: TaxType, percentage: float) -> None:
         self.tax_id = tax_id
         self.tax_type = tax_type
         self.percentage = percentage
+
 
 class Product:
     def __init__(
@@ -31,7 +34,7 @@ class Product:
         self.quantity = quantity
         self.price = price
         self.taxes = taxes
-    
+
     def calculate_tax(self, tax: Tax) -> float:
         tax_value = self.quantity * self.price * tax.percentage
 
@@ -44,8 +47,8 @@ class Product:
         total = 0.0
         for tax in self.taxes:
             total += self.calculate_tax(tax)
-        
+
         return total
-    
+
     def calculate_total(self) -> float:
         return (self.price * self.quantity) + self.calculate_total_taxes()
