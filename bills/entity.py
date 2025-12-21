@@ -20,9 +20,14 @@ class Buyer(Person):
         super().__init__(dni, email, mobile, address)
         self.full_name = full_name
         self.age = age
-
+        
+    def print(self) -> None:
+        return super().print()
 
 class Seller(Person):
     def __init__(self, dni, email, mobile, bussines_name, bussines_addres) -> None:
         super().__init__(dni, email, mobile, bussines_addres)
         self.bussines_name = bussines_name
+
+    def print(self) -> None:
+        return super().print()
